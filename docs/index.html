@@ -145,10 +145,11 @@
   </div>
   <header>
     <div class="miku-bars"></div>
-    <h1 class="glitch" data-text="KASANE TETO">KASANE TETO</h1>
+    <h1 class="glitch" data-text="NATHAN GARCIA">NATHAN GARCIA</h1>
     <p>Computer Science • Algorithms • Creative Systems</p>
     <nav>
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
       <a href="#songs">Songs</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
@@ -178,14 +179,25 @@
         <p>Kruskal-generated mazes with A* pathfinding. Clean structure, emergent complexity.</p>
       </div>
       <div class="song">
-        <h3>Synthetic Navigation</h3>
-        <div class="meta">BPM: 128 • Key: F • Genre: Simulation</div>
-        <p>Autonomous pixel agent evolving toward 3D environments and learned behavior.</p>
-      </div>
-      <div class="song">
         <h3>Noise → Meaning</h3>
         <div class="meta">BPM: 90 • Key: Am • Genre: Analysis</div>
-        <p>Essays on glitches, speedrunning, and how systems reveal intent through failure.</p>
+        <p>Explore a case study of the development of VSynth tools through the progression of Kasane Teto in UTAU and Synthesizer V.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class = "experience">
+    <h2>Experience</h2>
+    <div class="songs">
+      <div class="song">
+        <h3>YES Program Intern — SwRI</h3>
+        <div class="meta">Role: Research Intern • Focus: Applied CS</div>
+        <p>Explored interdisciplinary computer science applications, collaborated with a mentor, and developed a guided passion project emphasizing problem decomposition and real-world constraints.</p>
+      </div>
+      <div class="song">
+        <h3>Military City, USA Cohort -Texas A&M University System</h3>
+        <div class="meta">Role: Research Intern • Focus: Applied CS</div>
+        <p>Researched Python's applications in cybersecurity through the use of parallel computing.</p>
       </div>
     </div>
   </section>
@@ -205,13 +217,32 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: yourname@email.com</p>
-    <p>GitHub: github.com/yourusername</p>
-    <p>LinkedIn: linkedin.com/in/yourusername</p>
+    <p>Email: nathanagarcia79@gmail.com</p>
+    <p>GitHub: github.com/mikuv-chain</p>
+    <p>LinkedIn: linkedin.com/in/mikuvChain</p>
   </section>
 
   <footer>
     <p>© 2025 • Synthetic Voice, Real Work</p>
   </footer>
+  <script>
+    const mikuBtn = document.getElementById('mikuBtn');
+    const tetoBtn = document.getElementById('tetoBtn');
+    const body = document.body;
+
+    mikuBtn.addEventListener('click', () => {
+      body.classList.remove('teto');
+      body.classList.add('miku');
+      mikuBtn.classList.add('active');
+      tetoBtn.classList.remove('active');
+    });
+
+    tetoBtn.addEventListener('click', () => {
+      body.classList.remove('miku');
+      body.classList.add('teto');
+      tetoBtn.classList.add('active');
+      mikuBtn.classList.remove('active');
+    });
+  </script>
 </body>
 </html>
