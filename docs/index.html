@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Nathan Garcia | Portfolio</title>
+
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --miku-blue: #add8e6;
+      --teto-red: #d43f52;
       --teto-dark: #1a1a1a;
       --teto-gray: #2a2a2a;
       --teto-light: #f5f5f5;
@@ -67,20 +70,23 @@
     }
 
     section h2 {
-      color: var(--miku-blue);
+      color: var(--teto-red);
       margin-bottom: 1rem;
       border-left: 4px solid var(--miku-blue);
       padding-left: 1rem;
     }
 
-    .about p {
-      max-width: 700px;
+    .about p,
+    .experience p {
+      max-width: 750px;
       color: #ddd;
+      margin-bottom: 1.5rem;
     }
 
-    .experience p {
-      max-width: 700px;
-      color: #ddd;
+    .experience h3 {
+      margin-top: 1.5rem;
+      color: var(--accent);
+      font-size: 1rem;
     }
 
     .projects {
@@ -92,13 +98,13 @@
     .project-card {
       background: var(--teto-gray);
       padding: 1.5rem;
-      border-radius: 10px;
+      border-radius: 12px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(212, 63, 82, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(212, 63, 82, 0.35);
     }
 
     .project-card h3 {
@@ -133,6 +139,7 @@
       font-size: 0.8rem;
     }
 
+    /* Glitch Effect */
     .glitch {
       position: relative;
       display: inline-block;
@@ -151,16 +158,29 @@
       top: -1px;
       color: var(--accent);
       opacity: 0.7;
+      animation: glitchShift 1.5s infinite linear alternate-reverse;
     }
 
     .glitch::after {
       top: 1px;
       color: var(--miku-blue);
       opacity: 0.7;
+      animation: glitchShift 2s infinite linear alternate;
+    }
+
+    @keyframes glitchShift {
+      0% { transform: translate(0); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(-1px, -1px); }
+      60% { transform: translate(1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <h1 class="glitch" data-text="NATHAN GARCIA">NATHAN GARCIA</h1>
     <p>Computer Science • Algorithms • Creative Systems</p>
@@ -176,34 +196,50 @@
   <section id="about" class="about">
     <h2>About Me</h2>
     <p>
-      I'm a computer science student with a fascination for structure, systems, and creative computation as well as applied mathematics.
-      Inspired by Kasane Teto's synthetic-yet-human identity, my work blends logic with expression—
-      from algorithms and simulations to experimental projects.
+      I am a computer science student with a fascination for structure, systems, and creative computation,
+      with a strong interest in applied mathematics. Inspired by Kasane Teto’s synthetic-yet-human identity,
+      my work blends logic with expression—ranging from algorithms and simulations to experimental creative systems.
     </p>
   </section>
 
   <section id="experience" class="experience">
     <h2>Experience</h2>
-    <h3>Student Researcher - Texas A&M University System; San Antonio, TX: May 2025 - Jul 2025</h3>
+
+    <h3>Student Researcher — Texas A&M University System (San Antonio, TX)</h3>
     <p>
-      Under the Military City USA Consotorium, I researched Parallel Computing through Python and its application across various disciplines: portscanning and cybersecurity.
+      <em>May 2025 – July 2025</em><br>
+      Conducted research under the Military City USA Consortium, focusing on parallel computing in Python and
+      its applications to port scanning and cybersecurity across multiple disciplines.
     </p>
-    <h3>Student Researcher - Southwest Research Institute; San Antonio, Texas: Jul 2024 - Jul 2024</h3>
+
+    <h3>Student Researcher — Southwest Research Institute (San Antonio, TX)</h3>
     <p>
-      Under the YES Program, I collaborated with a mentor at the campus to come up with a proposal to present to all the mentors who took part in hosting the program.
+      <em>July 2024</em><br>
+      Participated in the YES Program, collaborating with a mentor to develop and present a technical research
+      proposal to faculty and industry professionals.
     </p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
+
       <div class="project-card">
         <h3>Maze Generation & Pathfinding</h3>
-        <p>Procedural maze generation using Kruskal's algorithm with A* pathfinding visualization.</p>
-      <div class="project-card">
-        <h3>Text to Speech Model</h3>
-        <p>Using Python, I developed a method of text to speech by seperating strings into notes for OpenUtau to Output</p>
+        <p>
+          Procedural maze generation using Kruskal’s algorithm, paired with A* pathfinding visualization
+          to explore optimal traversal strategies.
+        </p>
       </div>
+
+      <div class="project-card">
+        <h3>Text-to-Speech Model</h3>
+        <p>
+          Developed a Python-based text-to-speech pipeline by mapping strings to musical notes
+          and generating vocal output using OpenUtau.
+        </p>
+      </div>
+
     </div>
   </section>
 
@@ -231,5 +267,6 @@
   <footer>
     <p>© 2025 • Synthetic Voice, Real Work</p>
   </footer>
+
 </body>
 </html>
