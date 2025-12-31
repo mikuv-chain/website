@@ -3,243 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nathan Garcia | Portfolio</title>
-
+  <title>Teto // Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --miku-blue: #add8e6;
       --teto-red: #d43f52;
-      --teto-dark: #1a1a1a;
-      --teto-gray: #2a2a2a;
-      --teto-light: #f5f5f5;
-      --accent: #00CED1;
+      --teto-pink: #ff6f91;
+      --miku-teal: #39c5bb;
+      --teto-dark: #0f1115;
+      --teto-gray: #1c1f26;
+      --teto-light: #f5f7fa;
+      --bg-primary: var(--teto-dark);
+      --accent: var(--miku-teal);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'JetBrains Mono', monospace;
+    body.miku {
+      --bg-primary: #0e1c1c;
+      --accent: var(--miku-teal);
     }
+
+    body.teto {
+      --bg-primary: #1a0f14;
+      --accent: var(--teto-red);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'JetBrains Mono', monospace; }
 
     body {
-      background: linear-gradient(135deg, var(--teto-dark), #111);
+      background: radial-gradient(circle at top, rgba(57,197,187,0.08), transparent 60%),
+                  linear-gradient(180deg, var(--bg-primary), #000);
       color: var(--teto-light);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .lyrics-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      font-size: 1.2rem;
+      line-height: 2.2rem;
+      white-space: pre-wrap;
+      animation: scrollLyrics 120s linear infinite;
+      color: var(--accent);
+    }
+
+    @keyframes scrollLyrics {
+      from { transform: translateY(100%); }
+      to { transform: translateY(-200%); }
     }
 
     header {
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
       text-align: center;
       border-bottom: 1px solid var(--teto-gray);
     }
 
     header h1 {
-      font-size: 3rem;
-      color: var(--miku-blue);
-      letter-spacing: 2px;
+      font-size: 3.2rem;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-shadow: 0 0 18px rgba(57,197,187,0.4);
     }
 
-    header p {
-      margin-top: 1rem;
-      color: #ccc;
-    }
-
-    nav {
-      margin-top: 2rem;
-    }
-
+    nav { margin-top: 1.5rem; }
     nav a {
       color: var(--teto-light);
       margin: 0 1rem;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: color 0.2s ease;
+    }
+    nav a:hover { color: var(--accent); }
+
+    .toggle {
+      margin-top: 2rem;
+      display: inline-flex;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
     }
 
-    nav a:hover {
-      color: var(--accent);
+    .toggle button {
+      background: transparent;
+      color: var(--teto-light);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      font-size: 0.8rem;
     }
 
-    section {
-      max-width: 1000px;
-      margin: 4rem auto;
-      padding: 0 2rem;
+    .toggle button.active {
+      background: var(--accent);
+      color: #000;
     }
 
+    section { max-width: 1000px; margin: 4rem auto; padding: 0 2rem; }
     section h2 {
-      color: var(--teto-red);
+      color: var(--accent);
       margin-bottom: 1rem;
-      border-left: 4px solid var(--miku-blue);
+      border-left: 4px solid var(--accent);
       padding-left: 1rem;
     }
 
-    .about p,
-    .experience p {
-      max-width: 750px;
-      color: #ddd;
-      margin-bottom: 1.5rem;
-    }
-
-    .experience h3 {
-      margin-top: 1.5rem;
-      color: var(--accent);
-      font-size: 1rem;
-    }
-
-    .projects {
+    .songs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
 
-    .project-card {
-      background: var(--teto-gray);
+    .song {
+      background: linear-gradient(145deg, var(--teto-gray), #121318);
+      border-radius: 14px;
       padding: 1.5rem;
-      border-radius: 12px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(212, 63, 82, 0.35);
-    }
-
-    .project-card h3 {
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .project-card p {
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .skill {
-      background: #111;
-      border: 1px solid var(--miku-blue);
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-    }
+    .song h3 { color: var(--accent); margin-bottom: 0.3rem; }
+    .song .meta { font-size: 0.75rem; opacity: 0.7; margin-bottom: 0.6rem; }
+    .song p { font-size: 0.85rem; color: #ccc; }
 
     footer {
       text-align: center;
       padding: 3rem 2rem;
       border-top: 1px solid var(--teto-gray);
-      color: #999;
       font-size: 0.8rem;
-    }
-
-    /* Glitch Effect */
-    .glitch {
-      position: relative;
-      display: inline-block;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .glitch::before {
-      top: -1px;
-      color: var(--accent);
       opacity: 0.7;
-      animation: glitchShift 1.5s infinite linear alternate-reverse;
-    }
-
-    .glitch::after {
-      top: 1px;
-      color: var(--miku-blue);
-      opacity: 0.7;
-      animation: glitchShift 2s infinite linear alternate;
-    }
-
-    @keyframes glitchShift {
-      0% { transform: translate(0); }
-      20% { transform: translate(-1px, 1px); }
-      40% { transform: translate(-1px, -1px); }
-      60% { transform: translate(1px, 1px); }
-      80% { transform: translate(1px, -1px); }
-      100% { transform: translate(0); }
     }
   </style>
 </head>
+<body class="miku">
+  <div class="lyrics-bg">
+    初音ミク　未来へ歌う声
+    重ねた音が世界をつなぐ
+    偽物でも　本物になる
+    声はコード　心はここに
 
-<body>
-
+    Kasane Teto — synthetic anomaly
+    noise becomes meaning
+    meaning becomes self
+  </div>
   <header>
-    <h1 class="glitch" data-text="NATHAN GARCIA">NATHAN GARCIA</h1>
+    <div class="miku-bars"></div>
+    <h1 class="glitch" data-text="KASANE TETO">KASANE TETO</h1>
     <p>Computer Science • Algorithms • Creative Systems</p>
     <nav>
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
+      <a href="#songs">Songs</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
+
+    <div class="toggle">
+      <button id="mikuBtn" class="active">MIKU MODE</button>
+      <button id="tetoBtn">TETO MODE</button>
+    </div>
   </header>
 
   <section id="about" class="about">
     <h2>About Me</h2>
     <p>
-      I am a computer science student with a fascination for structure, systems, and creative computation,
-      with a strong interest in applied mathematics. Inspired by Kasane Teto’s synthetic-yet-human identity,
-      my work blends logic with expression—ranging from algorithms and simulations to experimental creative systems.
+      I'm a computer science student with a fascination for structure, systems, and creative computation.
+      Inspired by Kasane Teto's synthetic-yet-human identity, my work blends logic with expression—
+      from algorithms and simulations to experimental projects.
     </p>
   </section>
 
-  <section id="experience" class="experience">
-    <h2>Experience</h2>
-
-    <h3>Student Researcher — Texas A&M University System (San Antonio, TX)</h3>
-    <p>
-      <em>May 2025 – July 2025</em><br>
-      Conducted research under the Military City USA Consortium, focusing on parallel computing in Python and
-      its applications to port scanning and cybersecurity across multiple disciplines.
-    </p>
-
-    <h3>Student Researcher — Southwest Research Institute (San Antonio, TX)</h3>
-    <p>
-      <em>July 2024</em><br>
-      Participated in the YES Program, collaborating with a mentor to develop and present a technical research
-      proposal to faculty and industry professionals.
-    </p>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-
-      <div class="project-card">
-        <h3>Maze Generation & Pathfinding</h3>
-        <p>
-          Procedural maze generation using Kruskal’s algorithm, paired with A* pathfinding visualization
-          to explore optimal traversal strategies.
-        </p>
+  <section id="songs">
+    <h2>Songs (Projects)</h2>
+    <div class="songs">
+      <div class="song">
+        <h3>Maze Runner.exe</h3>
+        <div class="meta">BPM: 140 • Key: Dm • Genre: Algorithmic</div>
+        <p>Kruskal-generated mazes with A* pathfinding. Clean structure, emergent complexity.</p>
       </div>
-
-      <div class="project-card">
-        <h3>Text-to-Speech Model</h3>
-        <p>
-          Developed a Python-based text-to-speech pipeline by mapping strings to musical notes
-          and generating vocal output using OpenUtau.
-        </p>
+      <div class="song">
+        <h3>Synthetic Navigation</h3>
+        <div class="meta">BPM: 128 • Key: F • Genre: Simulation</div>
+        <p>Autonomous pixel agent evolving toward 3D environments and learned behavior.</p>
       </div>
-
+      <div class="song">
+        <h3>Noise → Meaning</h3>
+        <div class="meta">BPM: 90 • Key: Am • Genre: Analysis</div>
+        <p>Essays on glitches, speedrunning, and how systems reveal intent through failure.</p>
+      </div>
     </div>
   </section>
 
@@ -258,15 +205,13 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: nathanagarcia79@gmail.com</p>
-    <p>GitHub: github.com/mikuv-chain</p>
-    <p>LinkedIn: linkedin.com/in/mikuChain</p>
-    <p>Handshake: app.joinhandshake.com/profiles/mikuv-chain</p>
+    <p>Email: yourname@email.com</p>
+    <p>GitHub: github.com/yourusername</p>
+    <p>LinkedIn: linkedin.com/in/yourusername</p>
   </section>
 
   <footer>
     <p>© 2025 • Synthetic Voice, Real Work</p>
   </footer>
-
 </body>
 </html>
