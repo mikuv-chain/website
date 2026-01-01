@@ -283,11 +283,6 @@
     const trackName = document.getElementById('trackName');
     trackName.textContent = 'Background Track';
 
-    audio.addEventListener('error', (e) => {
-      console.error('Audio failed to load:', e);
-      trackName.textContent = 'Audio load error';
-    });
-
     playPause.addEventListener('click', () => {
       if (audio.paused) {
         audio.play();
