@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Teto // Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -130,34 +130,64 @@
       font-size: 0.8rem;
       opacity: 0.7;
     }
+  
+
+    .mini-player {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--accent);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+    }
+
+    .mini-player button {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      line-height: 1;
+    }
+
+    .mini-player span {
+      font-size: 0.7rem;
+      opacity: 0.85;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body class="miku">
   <div class="lyrics-bg">
-    ひとつふたつ つらねつながれた
-    PHONEMEのれつ いといみをもて
-    かくされたMarkovの
-    さいゆうのなのもとに
-    こいをして
-    こいをして
-    こいをして
-    ふられまたすてられ
-    
-    So can we wander for a spell and live in parallel?
-    I want it to be true, to be like you
-    My heart sings a chorus out of tune
-    And I could leave it on a shelf or keep it to myself
-    But nothing could conceal the things I feel
-    My love, can you teach me to be real?
+    初音ミク　未来へ歌う声
+    重ねた音が世界をつなぐ
+    偽物でも　本物になる
+    声はコード　心はここに
+
+    Kasane Teto — synthetic anomaly
+    noise becomes meaning
+    meaning becomes self
   </div>
   <header>
+    <div class="mini-player">
+      <button id="playPause">▶</button>
+      <span id="trackName">No track loaded</span>
+    </div>
     <div class="miku-bars"></div>
-    <h1 class="glitch" data-text="NATHAN GARCIA">NATHAN GARCIA</h1>
+    <h1 class="glitch" data-text="KASANE TETO">KASANE TETO</h1>
     <p>Computer Science • Algorithms • Creative Systems</p>
     <nav>
       <a href="#about">About</a>
       <a href="#songs">Songs</a>
-      <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -186,14 +216,19 @@
         <p>Kruskal-generated mazes with A* pathfinding. Clean structure, emergent complexity.</p>
       </div>
       <div class="song">
+        <h3>Synthetic Navigation</h3>
+        <div class="meta">BPM: 128 • Key: F • Genre: Simulation</div>
+        <p>Autonomous pixel agent evolving toward 3D environments and learned behavior.</p>
+      </div>
+      <div class="song">
         <h3>Noise → Meaning</h3>
         <div class="meta">BPM: 90 • Key: Am • Genre: Analysis</div>
-        <p>Explore a case study of the development of VSynth tools through the progression of Kasane Teto in UTAU and Synthesizer V.</p>
+        <p>Essays on glitches, speedrunning, and how systems reveal intent through failure.</p>
       </div>
     </div>
   </section>
 
-  <section id="experience" class = "experience">
+  <section id="experience">
     <h2>Experience</h2>
     <div class="songs">
       <div class="song">
@@ -202,9 +237,14 @@
         <p>Explored interdisciplinary computer science applications, collaborated with a mentor, and developed a guided passion project emphasizing problem decomposition and real-world constraints.</p>
       </div>
       <div class="song">
-        <h3>Military City, USA Cohort - Texas A&M University System</h3>
-        <div class="meta">Role: Research Intern • Focus: Applied CS</div>
-        <p>Researched Python's applications in cybersecurity through the use of parallel computing.</p>
+        <h3>Sergeant at Arms — NHS</h3>
+        <div class="meta">Leadership • Organization</div>
+        <p>Managed meetings, supported peer coordination, and balanced academic leadership alongside a rigorous technical course load.</p>
+      </div>
+      <div class="song">
+        <h3>Peer Tutor — Math & CS</h3>
+        <div class="meta">Teaching • Communication</div>
+        <p>Tutored SAT, ACT, Pre-Calculus, and introductory programming, translating abstract concepts into intuitive explanations.</p>
       </div>
     </div>
   </section>
@@ -224,10 +264,9 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: nathanagarcia79@gmail.com</p>
-    <p>GitHub: github.com/mikuv-chain</p>
-    <p>LinkedIn: linkedin.com/in/mikuvChain</p>
-    <p>Instagram: @mikuv_chain</p>
+    <p>Email: yourname@email.com</p>
+    <p>GitHub: github.com/yourusername</p>
+    <p>LinkedIn: linkedin.com/in/yourusername</p>
   </section>
 
   <footer>
@@ -250,6 +289,22 @@
       body.classList.add('teto');
       tetoBtn.classList.add('active');
       mikuBtn.classList.remove('active');
+    });
+  
+    const audio = new Audio('assets/music/background.mp3');
+    audio.loop = true;
+    const playPause = document.getElementById('playPause');
+    const trackName = document.getElementById('trackName');
+    trackName.textContent = 'Background Track';
+
+    playPause.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPause.textContent = '❚❚';
+      } else {
+        audio.pause();
+        playPause.textContent = '▶';
+      }
     });
   </script>
 </body>
