@@ -1,15 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Python in HTML</title>
-   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-   <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <title>Lyric Music Video Renderer</title>
+
+  <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      color: white;
+      font-family: Arial;
+    }
+
+    #lyrics {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      text-align: center;
+      font-size: 3em;
+      transform: translateY(-50%);
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
+
 <body>
-   <h1>Run Python in Browser</h1>
-   <py-script>
-       for i in range(3):
-           print(f"Hello from Python {i}")
-   </py-script>
+<canvas id="bg"></canvas>
+<div id="lyrics"></div>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// 🎨 Simple animated background (Manim-like effect)
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: Math.random() - 0.5,
+    vy: Math.random() - 0.5
+  });
+}
+
+function animateBG() {
+  ctx.fillStyle = "rgba(0,0,0,0.2)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    ctx.fillRect(p.x, p.y, 2, 2);
+  });
+
+  requestAnimationFrame(animateBG);
+}
+
+animateBG();
+
+// 🎵 TextAlive setup
+const player = new TextAliveApp.Player({
+  app: { token: "YOUR_API_TOKEN" }
+});
+
+const lyricsDiv = document.getElementById("lyrics");
+
+player.addListener({
+  onAppReady: () => {
+    player.createFromSongUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+  },
+
+  onTimeUpdate: (position) => {
+    const char = player.video.findChar(position);
+
+    if (char) {
+      lyricsDiv.textContent = char.text;
+
+      // 🎨 Sync animation to lyrics
+      lyricsDiv.style.transform = `translateY(-50%) scale(${1 + Math.random()*0.5})`;
+      lyricsDiv.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
+    }
+  }
+});
+</script>
+
 </body>
 </html>
